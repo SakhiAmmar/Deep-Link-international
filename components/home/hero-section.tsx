@@ -46,10 +46,12 @@ export function HeroSection() {
           muted
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
+          poster="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=2070"
         >
           <source
-            src="https://videos.pexels.com/video-files/4761440/4761440-uhd_2560_1440_25fps.mp4"
+            src="https://cdn.coverr.co/videos/coverr-athlete-running-on-a-track-1080p-2401.mp4"
             type="video/mp4"
           />
         </video>
