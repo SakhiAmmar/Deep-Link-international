@@ -39,15 +39,20 @@ export function HeroSection() {
       ref={heroRef}
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background */}
+      {/* Video Background */}
       <div className="hero-bg absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=2070')",
-          }}
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source
+            src="https://videos.pexels.com/video-files/4761434/4761434-uhd_2560_1440_25fps.mp4"
+            type="video/mp4"
+          />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
       </div>
