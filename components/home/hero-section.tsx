@@ -48,10 +48,10 @@ export function HeroSection() {
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
-          poster="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=2070"
+          poster=""
         >
           <source
-            src="https://cdn.coverr.co/videos/coverr-athlete-running-on-a-track-1080p-2401.mp4"
+            src="https://pub-84133523cf2e46d48181cea0a18cb13a.r2.dev/DLI_Hero_Video_Production_Request.mp4"
             type="video/mp4"
           />
         </video>
