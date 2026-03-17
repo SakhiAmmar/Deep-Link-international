@@ -1,15 +1,17 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { gsap } from "gsap"
-import { ArrowRight, ChevronDown } from "lucide-react"
+import { ArrowRight, ChevronDown, Volume2, VolumeX } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isMuted, setIsMuted] = useState(true)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -27,6 +29,13 @@ export function HeroSection() {
     return () => ctx.revert()
   }, [])
 
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
+      setIsMuted(!isMuted)
+    }
+  }
+
   const scrollToContent = () => {
     window.scrollTo({
       top: window.innerHeight,
@@ -42,6 +51,7 @@ export function HeroSection() {
       {/* Background Video */}
       <div className="hero-bg absolute inset-0 z-0">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
@@ -58,6 +68,26 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
       </div>
+
+      {/* Mute/Unmute Button */}
+      <motion.button
+        onClick={toggleMute}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="absolute top-8 right-8 z-20 p-3 rounded-full bg-background/20 backdrop-blur-md border border-foreground/10 hover:bg-background/40 transition-all duration-300"
+        title={isMuted ? "Unmute video" : "Mute video"}
+      >
+        <motion.div
+          animate={{ scale: isMuted ? 0.8 : 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          {isMuted ? (
+            <VolumeX className="w-5 h-5 text-foreground" />
+          ) : (
+            <Volume2 className="w-5 h-5 text-foreground" />
+          )}
+        </motion.div>
+      </motion.button>
 
       {/* Content */}
       <div ref={textRef} className="relative z-10 container mx-auto px-4 lg:px-8">
