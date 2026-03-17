@@ -17,6 +17,7 @@ function ShopContent() {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
   const [selectedSubcategory, setSelectedSubcategory] = useState(initialSubcategory)
   const [showFilters, setShowFilters] = useState(false)
+  const [displayCount, setDisplayCount] = useState(12)
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
@@ -29,6 +30,8 @@ function ShopContent() {
       return matchesSearch && matchesCategory && matchesSubcategory
     })
   }, [searchQuery, selectedCategory, selectedSubcategory])
+
+  const displayedProducts = filteredProducts.slice(0, displayCount)
 
   const currentSubcategories = selectedCategory
     ? categories[selectedCategory as keyof typeof categories]?.subcategories || []
@@ -138,17 +141,33 @@ function ShopContent() {
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground mb-6">
-          Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""}
+          Showing {displayedProducts.length} of {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""}
           {hasActiveFilters && " with active filters"}
         </p>
 
         {/* Products Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-            {filteredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+              {displayedProducts.map((product, index) => (
+                <ProductCard key={product.id} product={product} index={index} />
+              ))}
+            </div>
+
+            {/* Show More Button */}
+            {displayCount < filteredProducts.length && (
+              <div className="flex justify-center mt-12">
+                <motion.button
+                  onClick={() => setDisplayCount(displayCount + 12)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300"
+                >
+                  Show More Products
+                </motion.button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-20">
             <p className="text-xl text-muted-foreground">No products found</p>

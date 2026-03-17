@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Upload, FileText, Download, Trash2 } from 'lucide-react'
+import { FileText, Download } from 'lucide-react'
 
 interface Catalogue {
   id: string
@@ -53,10 +53,6 @@ export default function CataloguePage() {
     },
   }
 
-  const handleDelete = (id: string) => {
-    setCatalogues(catalogues.filter(cat => cat.id !== id))
-  }
-
   return (
     <main className="min-h-screen bg-background pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
@@ -74,34 +70,6 @@ export default function CataloguePage() {
           <p className="text-foreground/60 text-lg max-w-2xl">
             Download our latest product catalogues featuring our complete sportswear, streetwear, and gloves collections.
           </p>
-        </motion.div>
-
-        {/* Upload Section */}
-        <motion.div
-          className="mb-12 p-8 border-2 border-dashed border-accent/30 rounded-lg bg-accent/5 hover:border-accent/60 transition-all duration-300"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex flex-col items-center text-center">
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="mb-4"
-            >
-              <Upload className="w-12 h-12 text-accent" />
-            </motion.div>
-            <h2 className="text-2xl font-semibold mb-2">Upload New Catalogue</h2>
-            <p className="text-foreground/60 mb-6">Drag and drop your PDF or image files here, or click to browse</p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-accent text-background font-semibold rounded-lg hover:bg-accent/90 transition-all duration-300"
-            >
-              Choose Files
-            </motion.button>
-          </div>
         </motion.div>
 
         {/* Catalogues Grid */}
@@ -130,14 +98,6 @@ export default function CataloguePage() {
                   >
                     <FileText className="w-6 h-6 text-accent" />
                   </motion.div>
-                  <motion.button
-                    onClick={() => handleDelete(catalogue.id)}
-                    whileHover={{ scale: 1.1, rotate: 90 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2 hover:bg-destructive/10 rounded-lg text-destructive opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </motion.button>
                 </div>
 
                 <h3 className="font-semibold text-lg mb-2 line-clamp-2">{catalogue.name}</h3>
