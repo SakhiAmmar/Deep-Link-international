@@ -257,3 +257,13 @@ export function getProductById(id: string): Product | undefined {
 export function getFeaturedProducts(): Product[] {
   return products.filter((product) => product.featured)
 }
+
+export function getRelatedProducts(product: Product, limit: number = 4): Product[] {
+  return products
+    .filter(
+      (p) =>
+        p.subcategory === product.subcategory &&
+        p.id !== product.id
+    )
+    .slice(0, limit)
+}
