@@ -258,6 +258,10 @@ export function getFeaturedProducts(): Product[] {
   return products.filter((product) => product.featured)
 }
 
+export function getProductById(id: string): Product | undefined {
+  return products.find((p) => p.id === id)
+}
+
 export function getRelatedProducts(product: Product, limit: number = 4): Product[] {
   return products
     .filter(
