@@ -15,7 +15,11 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
   const { id } = await params
   const product = getProductById(id)
 
@@ -32,5 +36,4 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       relatedProducts={relatedProducts}
     />
   )
-}
 }
