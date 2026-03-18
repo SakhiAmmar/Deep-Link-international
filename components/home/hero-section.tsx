@@ -29,6 +29,12 @@ export function HeroSection() {
     return () => ctx.revert()
   }, [])
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted
+    }
+  }, [isMuted])
+
   const toggleMute = () => {
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted
@@ -53,7 +59,6 @@ export function HeroSection() {
         <video
           ref={videoRef}
           autoPlay
-          muted
           loop
           playsInline
           preload="auto"
