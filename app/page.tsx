@@ -10,9 +10,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <BrandSection />
       <FeaturedProducts />
       <CategoriesSection />
+      <BrandSection />
       <GallerySection />
       <FAQSection />
       <CTASection />
