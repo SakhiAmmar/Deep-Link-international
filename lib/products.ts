@@ -1,3 +1,5 @@
+import { getProductImageUrls } from "./r2-config"
+
 export interface Product {
   id: string
   name: string
@@ -58,11 +60,58 @@ export const categories = {
 
 export const products: Product[] = [
   // SPORTSWEAR - SOCCER KITS (5 products)
-  { id: "soccer-1", name: "Pro Soccer Kit", category: "sportswear", subcategory: "Soccer Kits", description: "Premium performance soccer kit designed for professional athletes.", features: ["Moisture-wicking", "Breathable mesh", "Reinforced stitching", "Custom sublimation"], sizes: ["S", "M", "L", "XL", "XXL"], images: ["/products/soccer-1.jpg"], featured: true },
-  { id: "soccer-2", name: "Elite Soccer Jersey Set", category: "sportswear", subcategory: "Soccer Kits", description: "Tournament-grade soccer jersey with reversible design.", features: ["Reversible", "Premium polyester", "Moisture control", "Team numbering"], sizes: ["S", "M", "L", "XL"], images: ["/products/soccer-2.jpg"] },
-  { id: "soccer-3", name: "Academy Training Kit", category: "sportswear", subcategory: "Soccer Kits", description: "Lightweight training kit for academies and youth teams.", features: ["Youth-friendly", "Quick-dry", "UV protection", "Comfortable fit"], sizes: ["S", "M", "L", "XL"], images: ["/products/soccer-3.jpg"] },
-  { id: "soccer-4", name: "Club Edition Soccer Kit", category: "sportswear", subcategory: "Soccer Kits", description: "Official club-grade soccer kit with premium sublimation.", features: ["Official graphics", "Club patch", "Breathable mesh", "Full customization"], sizes: ["M", "L", "XL", "XXL"], images: ["/products/soccer-4.jpg"] },
-  { id: "soccer-5", name: "Women's Soccer Kit Pro", category: "sportswear", subcategory: "Soccer Kits", description: "Tailored women's soccer kit with ergonomic fit.", features: ["Women's fit", "Supportive design", "Moisture-wicking", "Flatlock seams"], sizes: ["XS", "S", "M", "L"], images: ["/products/soccer-5.jpg"] },
+  // Images from Cloudflare R2 - easily customizable via r2-config.ts
+  {
+    id: "soccer-1",
+    name: "Pro Soccer Kit",
+    category: "sportswear",
+    subcategory: "Soccer Kits",
+    description: "Premium performance soccer kit designed for professional athletes.",
+    features: ["Moisture-wicking", "Breathable mesh", "Reinforced stitching", "Custom sublimation"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: getProductImageUrls(["soccer-1.jpg"]),
+    featured: true,
+  },
+  {
+    id: "soccer-2",
+    name: "Elite Soccer Jersey Set",
+    category: "sportswear",
+    subcategory: "Soccer Kits",
+    description: "Tournament-grade soccer jersey with reversible design.",
+    features: ["Reversible", "Premium polyester", "Moisture control", "Team numbering"],
+    sizes: ["S", "M", "L", "XL"],
+    images: getProductImageUrls(["soccer-2.jpg"]),
+  },
+  {
+    id: "soccer-3",
+    name: "Academy Training Kit",
+    category: "sportswear",
+    subcategory: "Soccer Kits",
+    description: "Lightweight training kit for academies and youth teams.",
+    features: ["Youth-friendly", "Quick-dry", "UV protection", "Comfortable fit"],
+    sizes: ["S", "M", "L", "XL"],
+    images: getProductImageUrls(["soccer-3.jpg"]),
+  },
+  {
+    id: "soccer-4",
+    name: "Club Edition Soccer Kit",
+    category: "sportswear",
+    subcategory: "Soccer Kits",
+    description: "Official club-grade soccer kit with premium sublimation.",
+    features: ["Official graphics", "Club patch", "Breathable mesh", "Full customization"],
+    sizes: ["M", "L", "XL", "XXL"],
+    images: getProductImageUrls(["soccer-4.jpg"]),
+  },
+  {
+    id: "soccer-5",
+    name: "Women's Soccer Kit Pro",
+    category: "sportswear",
+    subcategory: "Soccer Kits",
+    description: "Tailored women's soccer kit with ergonomic fit.",
+    features: ["Women's fit", "Supportive design", "Moisture-wicking", "Flatlock seams"],
+    sizes: ["XS", "S", "M", "L"],
+    images: getProductImageUrls(["soccer-5.jpg"]),
+  },
 
   // SPORTSWEAR - TRACKSUITS (5 products)
   { id: "tracksuit-1", name: "Performance Tracksuit", category: "sportswear", subcategory: "Tracksuits", description: "Full tracksuit for training and warm-up.", features: ["Breathable", "Moisture-wicking", "Tapered fit", "Reflective strips"], sizes: ["S", "M", "L", "XL"], images: ["/products/tracksuit-1.jpg"] },
