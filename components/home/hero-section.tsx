@@ -29,17 +29,8 @@ export function HeroSection() {
     return () => ctx.revert()
   }, [])
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted
-    }
-  }, [isMuted])
-
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted
-      setIsMuted(!isMuted)
-    }
+    setIsMuted(!isMuted)
   }
 
   const scrollToContent = () => {
@@ -59,16 +50,17 @@ export function HeroSection() {
         <video
           ref={videoRef}
           autoPlay
+          muted={isMuted}
           loop
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
-          poster=""
         >
           <source
             src="https://pub-84133523cf2e46d48181cea0a18cb13a.r2.dev/DLI_Hero_Video_Production_Request.mp4"
             type="video/mp4"
           />
+          Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
