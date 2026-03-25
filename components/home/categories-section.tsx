@@ -35,15 +35,22 @@ export function CategoriesSection() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-gradient-to-br from-background via-background to-accent/5 relative overflow-hidden">
+      {/* Background decoration */}
+      <motion.div
+        className="absolute -top-40 -right-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
+      
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="max-w-3xl mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-block text-xs tracking-[0.3em] text-primary mb-4"
+            className="inline-block text-xs tracking-[0.3em] text-accent mb-4 font-bold"
           >
             SHOP BY CATEGORY
           </motion.span>
@@ -51,9 +58,9 @@ export function CategoriesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold tracking-tight"
+            className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-balance"
           >
-            Explore Our Collections
+            Collections That <span className="text-accent">Define Excellence</span>
           </motion.h2>
         </div>
 
@@ -67,29 +74,46 @@ export function CategoriesSection() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
               <Link href={category.href} className="group block relative">
-                <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border-2 border-accent/20 hover:border-accent transition-all duration-500">
                   <Image
                     src={category.image}
                     alt={category.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                  
+                  {/* Overlay on hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 transition-all duration-500"
+                    whileHover={{ opacity: 1 }}
+                  />
                   
                   {/* Content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6">
-                    <span className="text-xs text-primary/80 tracking-wider mb-2">
+                  <div className="absolute inset-0 flex flex-col justify-between p-8">
+                    {/* Count badge */}
+                    <motion.span
+                      className="self-start text-xs font-bold tracking-[0.2em] text-accent bg-background/40 backdrop-blur px-4 py-2 rounded-full"
+                      whileHover={{ scale: 1.1 }}
+                    >
                       {category.count}
-                    </span>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                      {category.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {category.description}
-                    </p>
-                    <div className="flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-4 transition-all">
-                      <span>Explore</span>
-                      <ArrowUpRight className="w-4 h-4" />
+                    </motion.span>
+                    
+                    {/* Bottom content */}
+                    <div>
+                      <h3 className="text-3xl md:text-4xl font-black mb-2 text-balance">
+                        {category.name}
+                      </h3>
+                      <p className="text-sm text-foreground/70 mb-6 font-medium">
+                        {category.description}
+                      </p>
+                      <motion.div
+                        className="flex items-center gap-3 text-sm font-bold text-accent group-hover:gap-5 transition-all"
+                        whileHover={{ x: 5 }}
+                      >
+                        <span>EXPLORE NOW</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                      </motion.div>
                     </div>
                   </div>
                 </div>
